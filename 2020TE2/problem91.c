@@ -2,9 +2,9 @@
 
 int max2(int a, int b){
   if(a > b){
-    return a;
+    return a;//returnでmax2に返す
     }else{
-      return b;
+      return b;//同上
 
     }
 
@@ -17,7 +17,7 @@ int main(void){
 
   printf("整数２:"); scanf("%d", &n2);
 
-  printf("大きいほうの値は%dです\n", max2(n1,n2));
+  printf("大きいほうの値は%dです\n", max2(n1,n2));//max2にそれぞれ受け渡している(n1 = a とn2 = b)
 
   return 0;
 }
