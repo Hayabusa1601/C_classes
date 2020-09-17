@@ -2,12 +2,12 @@
 
 int count_bits(unsigned x)
 {
-    int count = 0;
+    int co = 0;
     while (x) {
-        if (x & 1U) count++;
+        if (x & 1U) co++;
         x >>= 1;
     }
-    return (count);
+    return co;
 }
 
 
@@ -33,13 +33,10 @@ unsigned set(unsigned x, int pos)
 {
     return (x | shiftl(1U, pos - 1));
 }
-
-
 unsigned reset(unsigned x, int pos)
 {
     return (x & ~shiftl(1U, pos - 1));
 }
-
 unsigned inverse(unsigned x, int pos)
 {
     return (x ^ shiftl(1U, pos - 1));
@@ -47,17 +44,17 @@ unsigned inverse(unsigned x, int pos)
 
 int main(void)
 {
-    unsigned nx, pos;
+    unsigned x, pos;
     
    
-    printf("非負の整数x："); scanf("%u", &nx);
+    printf("非負の整数x："); scanf("%u", &x);
     printf("操作するビット位置pos："); scanf("%u", &pos);
     
-    printf("\nx               ="); print_bits(nx);
-    printf("\n指定した位置を1にした値  ="); print_bits(set(nx, pos));
-    printf("\n指定した位置を０にした値 ="); print_bits(reset(nx, pos));
-    printf("\n指定した位置を反転させた値="); print_bits(inverse(nx, pos));
+    printf("\nx               ="); print_bits(x);
+    printf("\n指定した位置を1にした値  ="); print_bits(set(x, pos));
+    printf("\n指定した位置を０にした値 ="); print_bits(reset(x, pos));
+    printf("\n指定した位置を反転させた値="); print_bits(inverse(x, pos));
     putchar('\n');
     
-    return (0);
+    return 0;
 }
