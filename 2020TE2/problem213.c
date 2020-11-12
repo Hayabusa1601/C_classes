@@ -1,10 +1,18 @@
 #include<stdio.h>
 
-void decriment_date(int *y,int *m,int *d){
-  int flag = 0;
-  if(*y % 4 == 0 && *y % 100 != 0 || *y % 400 == 0){
+int uru_flag(int y){
+      int flag = 0;
+  if(y % 4 == 0 && y % 100 != 0 || y % 400 == 0){
     flag = 1;
-  }//うるう年フラグ
+  }
+  return flag;
+  }
+
+
+
+void decriment_date(int *y,int *m,int *d){
+  
+  int flag = uru_flag(*y);//うるう年フラグ
 
   if(*d != 1){
     (*d)--;//1でなければdのみ変わる
@@ -35,11 +43,7 @@ void decriment_date(int *y,int *m,int *d){
    }
 }       
 void incriment_date(int *y,int *m,int *d){
- int flag = 0;
-  if(*y % 4 == 0 && *y % 100 != 0 || *y % 400 == 0){
-    flag = 1;
-
-  }//うるう年フラグ
+  int flag = uru_flag(*y);//うるう年フラグ
    
   if(*m == 2 && flag && *d != 29){
     (*d)++;
