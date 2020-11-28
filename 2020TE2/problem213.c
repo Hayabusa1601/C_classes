@@ -10,7 +10,7 @@ int uru_flag(int y){
 
 
 
-void decriment_date(int *y,int *m,int *d){
+void decrement_date(int *y,int *m,int *d){
   
   int flag = uru_flag(*y);//うるう年フラグ
 
@@ -42,7 +42,7 @@ void decriment_date(int *y,int *m,int *d){
      }
    }
 }       
-void incriment_date(int *y,int *m,int *d){
+void increment_date(int *y,int *m,int *d){
   int flag = uru_flag(*y);//うるう年フラグ
    
   if(*m == 2 && flag && *d != 29){
@@ -80,10 +80,10 @@ int main(void){
   printf("あなたが入力した日付は%d年%d月%d日です。\n", year, month, date);
   
   if(flag == 0){
-  decriment_date(&year, &month, &date);
+  decrement_date(&year, &month, &date);
   printf("昨日は%d年%d月%d日です。\n", year, month, date);
   }else{
-  incriment_date(&year, &month, &date);
+  increment_date(&year, &month, &date);
   printf("翌日は%d年%d月%d日です。\n", year, month, date);
 }
   return 0;
