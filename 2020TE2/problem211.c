@@ -3,16 +3,20 @@
 
 int main(){
 
-  int i, a;
+  int i, j,a;
   char s[N][128];
   
   for (i=0; i < N; i++){
     printf("s[%d] : ", i);
     scanf("%s", s[i]);
-    if(s[i] == "$$$$$"){
-      a = i;
-       break;
+
+    for(j = 0; s[i][j] != '\0'; j++){
+      if(s[i][j] != '$') break;
+
   }
+   a = i;
+  if(j == 5) break;
+
   }
 
   for(i = 0; i < a; i++)
