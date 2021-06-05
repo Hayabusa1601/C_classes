@@ -12,7 +12,7 @@ int main(void) {
   printf("Nを入力してね:"); scanf("%d",&n);
 
   /*変数の宣言*/
-  int lim = (int)sqrt(n);//一番外側ループ用のnの平方根 
+  int lim = sqrt(n);//一番外側ループ用のnの平方根 
   int prime[n]; //判定を行う配列
   int ans[n];//答えを管理する配列
   int i,j,k;//counter

@@ -18,7 +18,7 @@ typedef union {
 
 int main(void) {
   u moji;
-  moji.ch = 'a';
+  moji.ch = 1;
   printf("%cのビット表示は",moji.ch);
   printf("%d%d%d%d%d%d%d%d", moji.b.b1, moji.b.b2, moji.b.b3, moji.b.b4, moji.b.b5, moji.b.b6, moji.b.b7, moji.b.b8);
 
