@@ -85,7 +85,7 @@ int main(void) {
     a[i] = rand();
   }//乱数を代入
 
-  shellsort(a);//insort関数に渡してinsert sort
+  shellsort(a);//shellsort関数に渡してshell sort
 
   for(i = 0; i < N; i++) {
     printf("%d\n", a[i]);
