@@ -1,36 +1,39 @@
 #include<stdio.h>
 
-void arraysort(int *arr,int n);
+void sortArr (int *arr, int n);
 
 
 int main(void) {
-    int a[10] = {21,321,12,1,54,6332,3,45,23,546};
-    int i;
-    for(i = 0; i < sizeof(a)/sizeof(a[0]); i++) {
-        printf("%d ", a[i]);
+  int n,i;
+  printf("要素数を入力:"); scanf("%d",&n);
+  int a[n];
+  for(i = 0; i < n; i++) {
+    scanf("%d", &a[i]);
+  }
 
-    }
-    putchar('\n');
+  sortArr(a, sizeof(a) / sizeof(a[0]));
 
+  for(i = 0; i < n; i++)   printf("%d\n", a[i]);
 
-    arraysort(a, sizeof(a)/sizeof(a[0]));
+  return 0;
 
-    for(i = 0; i < sizeof(a)/sizeof(a[0]); i++) {
-        printf("%d ", a[i]);
-
-    }
-    putchar('\n');
 }
 
-void arraysort(int *arr, int n) {
-    int i,j;
-    for(i = 0; i < n; i++) {
-        for(j = 0; j < n; j++) {
-         if(*(arr + i) < *(arr + j)) {
-             int tmp = *(arr + i);
-             *(arr + i) = *(arr + j);
-             *(arr + j) = tmp;
-         }   
-        }
+
+void sortArr(int *arr, int n) {
+  int i,j,k;
+
+  for(i = 0; i < n; i++) {
+    for(j = 0; j < n; j++) {
+      if(arr[i] > arr[j]) {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+      }
     }
+  }
 }
+
+
+
+

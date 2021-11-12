@@ -2,7 +2,7 @@
 
 int main(){
 
-	int a = 50;
+printf("HelloWorld!!\n");
 
 return 0;
 }

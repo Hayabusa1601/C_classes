@@ -1,4 +1,4 @@
-include<stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
 
 typedef struct MEMBERCARD {
@@ -21,7 +21,7 @@ int main (void) {
       i++;
       p1 = (mc *)malloc(sizeof(mc) * (i + 1));
      for(j = 0; j <=i; j++) {
-       *(p1+j) = *(p2+j);
+       *(p1+j) = *(p2+j);       
      }
      free(p2);
     }
@@ -34,6 +34,8 @@ int main (void) {
     putchar('\n');
   }
   putchar('\n');
-
+   
   return 0;
 }
+
+

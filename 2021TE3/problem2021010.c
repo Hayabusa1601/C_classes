@@ -23,12 +23,16 @@ int main(void) {
   return 0;
 }
 
+
+
 void show_data(Myst *p) {
   while (p != NULL) {
     printf("%3d, %lf\n", p->num, p->stre);
     p = p->next;
  }
 }
+
+
 
 /*headに先頭アドレス、aはデータの数を表す*/
 Myst* add_data(int a) {

@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include<string.h>//strlen()を利用するため
+#include<string.h>
 #define NUMBER 5 // 学生の人数
 #define NAME_LEN 64 //名前の文字数
 
@@ -38,18 +38,13 @@ int main(void) {
 }
 
 Student check_std(Student st) {
-   int b = 1;//正しい値かのフラグ 0=不正な値、1=正常な値
-
-   int namesize = strlen(st.name); //配列の要素数(中身の数)を取得
-
-
-   /*クソコード*/
-   /*100 < height < 220、30 < weight < 150、0 < schols < 200000の範囲から出ていたらフラグを0に*/   
+   int b = 1;
+   int namesize = strlen(st.name); 
+      
    if (st.height < 100 || st.height > 220 || st.weight < 30 || st.weight > 150 || st.schols < 0 || st.schols > 200000) {
       b = 0;
-   
    }
-   //不正な値であれば名前の末尾に*を付ける
+
    if (b == 0) {
      st.name[namesize] = '*';
    }

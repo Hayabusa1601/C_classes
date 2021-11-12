@@ -1,7 +1,7 @@
 #include<stdio.h>
 
 int max2(int a, int b){
-  return (a > b) ? a:b;//条件演算子
+  return (a > b) ? a:b;
 }
 
 int max4(int a, int b, int c, int d){

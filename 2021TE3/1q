@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
-
+#define X 4 //シェルソートの分割間隔
 #define N 20000
 
 void swap (int *x, int *y) {
@@ -18,13 +18,13 @@ void swap (int *x, int *y) {
        if(a[j] > a[j+1]) {
          swap(&a[j], &a[j + 1]);
      }
-:}
+}
 }
 }
 */
 
 /*挿入ソート*/
-void insort(int *a) {
+/*void insort(int *a) {
   int i,j;
 
   for(i = 1; i < N; i++) {
@@ -40,6 +40,29 @@ void insort(int *a) {
    }
   }
 }
+*/
+
+void shellsort(int *a) {
+  int i,j;
+  int preX = X / 2;
+
+  while(preX > 0) {
+      for(i = preX; i < N; i++) {
+         j = i;
+        
+        while((j > preX) && (a[j - preX] > a[j])) {
+          swap(&a[j - preX], &a[j]);
+          j -= preX;
+        }
+      }
+      preX /= 2;
+    }
+  }
+
+
+
+
+
 
 
 int main(void) {
@@ -55,7 +78,7 @@ int main(void) {
     a[i] = rand();
   }//乱数を代入
  
-  insort(a);//insort関数に渡してinsert sort
+  shellsort(a);//insort関数に渡してinsert sort
 
   for(i = 0; i < N; i++) {
     printf("%d\n", a[i]);

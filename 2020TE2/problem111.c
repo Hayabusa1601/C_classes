@@ -1,16 +1,19 @@
 #include <stdio.h>
 
-int count_bits(unsigned x){
-  int bits = 0;
-  while(x){
-    if(x & 1U){
-      bits++;
+int count_bits(unsigned x)
+{
+    int co = 0;
+    while (x) {
+        if (x & 1U) co++;
+        x >>= 1;
     }
-    x >>=1;
-  }
+    return co;
 }
-int int_bits(void){
-  return count_bits(~0U);
+
+
+int int_bits(void)
+{
+    return (count_bits(~0U));
 }
 
 
@@ -21,27 +24,22 @@ void print_bits(unsigned x)
         putchar(((x >> i) & 1U) ? '1' : '0');
 }
 
+unsigned shiftl(unsigned x, int n)
+{
+    return ((n >= int_bits()) ? 0 : (x << n));
+}
 
 unsigned set(unsigned x, int pos)
 {
-
-   if (!x >> pos){
-       return x+2^pos;
-   }
+    return (x | shiftl(1U, pos - 1));
 }
 unsigned reset(unsigned x, int pos)
-{ 
-   if(x>> pos){
-       return x - 2^pos;
-   }
+{
+    return (x & ~shiftl(1U, pos - 1));
 }
 unsigned inverse(unsigned x, int pos)
 {
-  if(x >> pos){
-      return x - 2^pos;
-  }else{
-      return x + 2^pos;
-  }
+    return (x ^ shiftl(1U, pos - 1));
 }
 
 int main(void)
