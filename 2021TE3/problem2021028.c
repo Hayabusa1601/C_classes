@@ -1,8 +1,8 @@
 #include<stdio.h>
-#include<math.h>
+#include<math.h> // -lmオプションつけて
 #define E 0.001
 #define DX 0.0000762939453125 
-#define DY 0.0562939000
+#define DY 0.0000562939000
 
 double func(double x, double y) {
   return sin(4*x) + pow((x/2),2) + sin(6*y) + pow(y,2) + 1;
@@ -13,7 +13,7 @@ double Xfdash(double x) {
 }
 
 double Yfdash(double y) {
-    return (func(0, y+DY) - func(0, y-DY)) / (2.0 * DY);
+    return (func(0, y + DY) - func(0, y - DY)) / (2.0 * DY);
 }
 
 double searchX() {
@@ -64,9 +64,10 @@ double searchX() {
 double searchY() {
    //三つとる初期値のうち中央の値
   double width = 0.300;
-  double x2 = -10.000;
-  double x1 = x2 - width;
-  double x3 = x2 + width;
+  //初期値が負だとなんか出ない
+  double y2 = 1.000;
+  double y1 = y2 - width;
+  double y3 = y2 + width;
   int co = 0;
 
   //次の中央の初期値
@@ -76,19 +77,19 @@ double searchY() {
   while(co < 10) {
 
       //最低値をチェック
-     if(func(0,x1) < func(0,x2) && func(0,x1) < func(0,x3)) {
-       next = x1;
+     if(func(0,y1) < func(0,y2) && func(0,y1) < func(0,y3)) {
+       next = y1;
 
-     } else if (func(0,x2) < func(0,x1) && func(0,x2) < func(0,x3)) {
-       next = x2;
+     } else if (func(0,y2) < func(0,y1) && func(0,y2) < func(0,y3)) {
+       next = y2;
 
-     } else if (func(0,x3) < func(0,x1) && func(0,x3) < func(0,x1)) {
-       next = x3;
+     } else if (func(0,y3) < func(0,y1) && func(0,y3) < func(0,y1)) {
+       next = y3;
      }
-     printf("y1=%lf y2=%lf y3=%lf ", x1,x2,x3);
+     printf("y1=%lf y2=%lf y3=%lf ", y1,y2,y3);
 
      //最低値が同じ場合、少し幅を広げる
-     if(next == x2) {
+     if(next == y2) {
        co++;
        width += 0.10;
      } else {
@@ -97,13 +98,13 @@ double searchY() {
 
 
      //初期値を更新
-     x2 = next;
-     x1 = x2 - width;
-     x3 = x2 + width;
-     printf("現在の最低値y = %lf\n", x2);
+     y2 = next;
+     y1 = y2 - width;
+     y3 = y2 + width;
+     printf("現在の最低値y = %lf\n", y2);
    }
 
-   return x2;
+   return y2;
 }
 
 int main(void) {
@@ -112,21 +113,25 @@ int main(void) {
   double y = searchY();
 
   //step2
+ 
   double a = 0.0001;
   double nextx;
   double nexty;
 
-  while(fabs(Xfdash(x)) > E || fabs(Yfdash(y)) > E) {
-    printf("dx = %lf  ", Xfdash(x));
-    printf("dy = %lf\n", Yfdash(y));
+  while(fabs(Xfdash(x)) > E) {
+    printf("dx = %lf\n", Xfdash(x));
+   // printf("dy = %lf\n", Yfdash(y));
 
     nextx = x - (a*Xfdash(x));
-    nexty = y - (a*Yfdash(y));
-
     x = nextx;
+  }
+  while(fabs(Yfdash(y)) > E) {
+   // printf("dx = %lf  ", Xfdash(x));
+    printf("dy = %lf\n", Yfdash(y));
+
+    nexty = y - (a*Yfdash(y));
     y = nexty;
   }
-
   printf("最低のx = %lf\n", x);
   printf("最低のdx = %lf\n", Xfdash(x));
 
