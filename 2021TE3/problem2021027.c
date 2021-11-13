@@ -37,7 +37,7 @@ double searchX() {
      } else if (func(x3) < func(x1) && func(x3) < func(x1)) {
        next = x3;
      }
-     printf("x1=%lf x2=%lf x3=%lf ", x1,x2,x3);
+    // printf("x1=%lf x2=%lf x3=%lf ", x1,x2,x3);
      
      //最低値が同じ場合、少し幅を広げる
      if(next == x2) {
@@ -52,7 +52,7 @@ double searchX() {
      x2 = next;
      x1 = x2 - width;
      x3 = x2 + width;
-     printf("現在の最低値 = %lf\n", x2);
+     //printf("現在の最低値 = %lf\n", x2);
    }
 
    return x2;
@@ -68,7 +68,7 @@ int main(void) {
   double next;
 
   while(fabs(fdash(x)) > E) {
-   printf("dx = %lf\n", fdash(x));
+   //printf("dx = %lf\n", fdash(x));
    next = x - (a*fdash(x));
    x = next;
    }

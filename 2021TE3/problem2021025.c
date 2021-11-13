@@ -22,7 +22,7 @@ int main(void) {
   double next;
 
   while(fabs(fdash(x)) > E) {
-   printf("dx = %lf ", fdash(x));
+   //printf("dx = %lf ", fdash(x));
    next = x - (a*fdash(x));
    x = next;
    }
