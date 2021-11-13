@@ -6,15 +6,15 @@
 char mojiShift(char c, int n) {
   char ans;
 
-  if( c < 'A' || c > 'Z') {
-     puts("エラー: A～Zで入力してください。");
+  if( !((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))) {
+     puts("エラー: A～Zもしくはa～zで入力してください。");
      printf("入力された文字 %c\n", c);
      
 
-  } else if((c - n) < 'A') {
+  } else if((c - n) < 'A' || (c - n) < 'a') {
      ans = (c-n) + 26;
 
-  } else if ((c - n) >= 'A') {
+  } else if ((c - n) >= 'A' || (c - n) >= 'a') {
      ans = c-n;
 }
 
