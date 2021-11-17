@@ -9,8 +9,6 @@ char transTable[7][8];
 char caesarTable[8][7];
 
 
-
-
    /*シーザー表を作成*/
 void makeCaesarTable() {
    int i,j,k,lowerco, upperco; 
@@ -57,30 +55,36 @@ void picMoji(char pic, int* pic1, int* pic2) {
 }
  
    /*暗号化関数*/
-char 2dMojiShift(char c, int n, int m) {
+char twoDMojiShift(char c, int n, int m) {
  
  //文字の行番号、列番号
-  int c1, c2;
+  int c1, c2, ans1, ans2;
   picMoji(c, &c1, &c2); 
 
   if (!((0 < n) && (n < 8))) { 
       printf("エラー：nは0<n<8の範囲内で入力してください。");
-
+      return 0;
   } else if (!((0 < m) && (m < 7)) ) {
       printf("エラー: mは0<m<7の範囲で入力してください。");
- 
+      return 0;
+  } else {   
+      ans1 = c1 + n;
+      ans2 = c2 + m;
+      printf("c1: %d ", c1);
+      printf("c2: %d ", c2);
+      printf("ans1: %d ", ans1);
+      printf("ans2: %d\n", ans2);
   }
   
-  int ans1 = c1 + n, ans2 = c2 + m;
   if (ans1 > 7) {
       ans1 -= 8;
   }
 
-  if (ans2 < 6) {
+  if (ans2 > 6) {
      ans2 -= 7;
   }
 
-  char ans = caesarTable[ans1][ans2]
+  char ans = caesarTable[ans1][ans2];
   return ans;
 
 }
@@ -115,9 +119,15 @@ int main(void) {
   printf("s=%d: %s\n", s,ansstr);
  }
 
+
+//暗号化できているか確認
+//makeCaesarTable();
+//char s = twoDMojiShift('a', 3, 3);
+//printf("ans:%c\n", s);
+ 
+
 //表ができているか確認  
-//  makeCaesarTable();
-//  
+//  makeCaesarTable();  
 //  int i,j;
 //  for(i = 0; i < 8; i++) {
 //   for(j = 0; j < 7; j++) {
