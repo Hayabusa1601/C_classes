@@ -9,10 +9,13 @@ char transTable[7][8];
 char caesarTable[8][7];
 
 
+
+
    /*シーザー表を作成*/
 void makeCaesarTable() {
    int i,j,k,lowerco, upperco; 
-     
+
+//行と列が逆のまま表を設定（そのほうがやりやすい）     
    for(i = 0,lowerco = 0, upperco = 0; i < 7; i++) {     
       for(j = 0; j < 4; j++, lowerco++) {
          transTable[i][j] = 'a'+lowerco;
@@ -36,13 +39,54 @@ void makeCaesarTable() {
 
 }
 
+
+
+
+ /*文字の行番号、列番号をアドレスに取得*/
+void picMoji(char pic, int* pic1, int* pic2) {
+   int i,j;
+   int ans;
+   for(i = 0; i < 8; i++) {
+     for(j = 0; j < 7; j++) {
+       if(caesarTable[i][j] == pic) {
+         *pic1 = i;
+         *pic2 = j;
+     }
+   }
+}
+}
+ 
    /*暗号化関数*/
 char 2dMojiShift(char c, int n, int m) {
-  if( !((0 < n) && (n < 8)) ) {
-      printf("エラー：nは0<n<8の範囲で入力してください。");
-  else if(!((0 < m) && (m < 7)) ) {
-      printf("エラー: mは0<n       "
+ 
+ //文字の行番号、列番号
+  int c1, c2;
+  picMoji(c, &c1, &c2); 
+
+  if (!((0 < n) && (n < 8))) { 
+      printf("エラー：nは0<n<8の範囲内で入力してください。");
+
+  } else if (!((0 < m) && (m < 7)) ) {
+      printf("エラー: mは0<m<7の範囲で入力してください。");
+ 
+  }
+  
+  int ans1 = c1 + n, ans2 = c2 + m;
+  if (ans1 > 7) {
+      ans1 -= 8;
+  }
+
+  if (ans2 < 6) {
+     ans2 -= 7;
+  }
+
+  char ans = caesarTable[ans1][ans2]
+  return ans;
+
 }
+
+
+
 
 
 
