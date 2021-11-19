@@ -30,27 +30,46 @@ void makeCaesarTable() {
 
 
 
-
- /*文字の行番号、列番号をアドレスに取得*/
-void picMoji(char pic, int* pic1, int* pic2) {
+ /*文字の行番号、列番号を取得*/
+int picMoji1(char pic) {
    int i,j;
-   int ans;
+   int ans, flag = 0;
    for(i = 0; i < 8; i++) {
      for(j = 0; j < 7; j++) {
        if(caesarTable[i][j] == pic) {
-         *pic1 = i;
-         *pic2 = j;
+         ans = i;
+         flag = 1;
+         break;
      }
+     if(flag == 1) break;
    }
 }
+   return ans;
 }
  
+int picMoji2(char pic) {
+   int i,j;
+   int ans, flag = 0;
+   for(i = 0; i < 8; i++) {
+     for(j = 0; j < 7; j++) {
+       if(caesarTable[i][j] == pic) {
+         ans = j;
+         flag = 1;
+         break;
+     }
+     if(flag == 1) break;
+   }
+}
+   return ans;
+}
+
    /*暗号化関数*/
 char twoDMojiShift(char c, int n, int m) {
  
  //文字の行番号、列番号
   int c1, c2, ans1, ans2;
-  picMoji(c, &c1, &c2); 
+  c1 = picMoji1(c); 
+  c2 = picMoji2(c);
 
   if (!((0 < n) && (n < 8))) { 
       printf("エラー：nは0<n<8の範囲内で入力してください。");
@@ -61,9 +80,14 @@ char twoDMojiShift(char c, int n, int m) {
   } else {   
       ans1 = c1 + n;
       ans2 = c2 + m;
-      //printf("c2: %d ", c2);
-      //printf("ans1: %d ", ans1);
-      //printf("ans2: %d\n", ans2);
+      
+      /*
+      printf("c1: %d ", c1);
+      printf("c2: %d ", c2);
+      printf("ans1: %d ", ans1);
+      printf("ans2: %d\n", ans2);
+      */
+
   }
   
   if (ans1 > 7) {
@@ -82,56 +106,58 @@ char twoDMojiShift(char c, int n, int m) {
 
 
 
-
-
 int main(void) {
+
  //十分大きな文字配列
- char str[1000] = {0}; 
+ char str[1000]; 
  int s, n, m, ch;
- int i = 0;
-
+ int i = 1;
  makeCaesarTable();
-
+ str[0] = ' ';
+ 
+ /*入力処理*/
  printf("シフト数1を入力 :"); scanf("%d", &n);
  printf("シフト数2を入力 :"); scanf("%d", &m);
-
-
  printf("文字列を入力 :");
- //入力処理
+ 
  while ( (ch = getchar()) != EOF) {
-	 str[i] = ch;
+    //誤作動を防止
+	 if(ch == '\n'|| ch == 0 || ch == 1 || ch == EOF) continue; 
+     
+    str[i] = ch;
 	 i++;	
 }
- printf("str: %s\n", str);
 
- 
+
  //配列の要素数
- int nstr = strlen(str);
+ int nstr = i;
 
+ //printf("n: %d\n", nstr);
+ //for(i = 0; i < nstr; i++) printf("str[%d]; %d \n", i, str[i]); 
  //回答用の配列
- char ansstr[nstr+1];
- ansstr[nstr] = '\0';
+ char ansstr[nstr];
 
- 
  //暗号化処理
  for(i = 0; i < nstr; i++) {
-	 if(str[i] == ' '){
-		ansstr[i] = ' ';
-	 } else {
-    ansstr[i] = twoDMojiShift(str[i], n, m);
-  }
+    if (str[i] == ' '){
+      ansstr[i] = ' '; //空白を除外
+
+    } else {
+      ansstr[i] = twoDMojiShift(str[i], n, m); 
+   
+   }
  }
-  //表示
+
+ //表示
  printf("回答: %s\n", ansstr);
 
 
 //暗号化できているか確認
 /*
 makeCaesarTable();
-char s = twoDMojiShift('y', 6,1);
+char s = twoDMojiShift(' ', 6,1);
 printf("ans:%c\n", s);
 */
-
 //表ができているか確認  
  /*
  makeCaesarTable();  
