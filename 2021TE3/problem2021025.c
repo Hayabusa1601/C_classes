@@ -10,7 +10,7 @@ double func(double x) {
 }
 
 double fdash(double x) {
-  return (func(x + DX) - func(x - DX)) / (2.0*DX);
+  return (func(x + DX) - func(x)) / (DX);
 }
 
 int main(void) {
