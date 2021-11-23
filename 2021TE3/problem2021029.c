@@ -9,13 +9,18 @@ char mojiShift(char c, int n) {
      puts("エラー: A～Zで入力してください。");
      printf("入力された文字 %c\n", c);
      exit(1);
+  }
 
-  } else if((c + n) < 'Z') {
+  if ((c + n) > 'Z') {
+     ans = (c+n) - 26;
+    // printf("ans:%c\n", ans);
+
+  } else if((c + n) <= 'Z') {
      ans = c+n;
+    // printf("ans:%c\n", ans);
 
-  } else if ((c + n) > 'Z') {
-     ans = (c+n) - 'A';
-}
+  }
+
 
 
    return ans;
@@ -40,11 +45,12 @@ int main(void) {
   char ansstr[nstr+1];
   ansstr[nstr] = '\0';
 
-
+  // printf("mojiShift:%c\n", mojiShift('X', 3));
   //暗号化処理
   int i;
   for(i = 0; i < nstr; i++) {
-    ansstr[i] = mojiShift(str[i], s);
+   ansstr[i] = mojiShift(str[i], s);
+
   }
 
   //表示
