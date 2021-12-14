@@ -19,16 +19,17 @@ int main(void) {
   
   for(i = 0; i < 100000; i++) {
     //位置
-    int position = (rand() % L);
+    double position = ((rand() % L)) + ((double)rand()/RAND_MAX);
     //printf("位置:%d ", position);      
 
     //縦の長さ
-    double angle = (rand() % 180);
-    //printf("角度:%.5lf ",angle);
-    double ver = a *(sin(angle * rad1));
+    int angle = (rand() % 180);
+    //printf("角度:%d ",angle);
+    double ver = a * sin(angle * rad1);
     //printf("縦の長さ:%.5lf\n", ver);
+    //printf("%lf\n", (double)position + ver);
+    if(L <= position + ver) {
 
-    if(L <= (double)position + ver || position == 0) {
       //printf("交わった！\n");
       count++;
     }
