@@ -2,43 +2,19 @@
 #include<stdlib.h>
 #include<time.h>
 
-int diffNum(int ans, int* hyou) {
-   int i, j, tmp=0;
-   
-   //ansの行と列を取得
-   for(i = 0; i < 7; i++) {
-     for(j = 0; j < 7; j++) {
-       if(hyou[0][i][j] == ans) {
-         break;
-         tmp=1;
-       }
-     }
-     if(tmp=1) break;
-   }
-
-   /*正解・間違い・惜しいを判定　正解→１を返す　不正解→２を返す*/
-   //正解
-   //
-   if(hyou[1][i][j] == 1) {
-      printf("正解！");
-      return 1;
-   } else {
-   
-   }
-}
-
-
 int getNum(int i, int j) {
   int x;
 
-  printf("数値を入力してください。");
-  scanf("%d", &x);
-
-    if(i < x &&& x < j) {
+  printf("数値を入力してください。:");
+  while (1) {
+    scanf("%d", &x);
+    
+    if(i < x && x < j) {
       break;
     } else {
-      printf("値が不正です。");
+      printf("値が不正です。再入力:");
     }
+  }
     return x;
  }
 
@@ -48,9 +24,8 @@ int getNum(int i, int j) {
 int main(void) {
   int hyou[2][7][7] = {0};
   int i, j, k = 1, ans;
-  int l, m;
-  srand((unsigned)time(null));
-
+  int l, m, tmp;
+  srand((unsigned)time(NULL));
 
   //表の作成
   for(i = 0; i < 7; i++) {
@@ -63,19 +38,44 @@ int main(void) {
    l = rand() % 7;
    m = rand() % 7;
    hyou[1][l][m] = 1;
-   
+   //デバッグ
+   printf("デバッグ答え：%d\n", hyou[0][l][m]);
 
-   int flag = 0;
-   
-   while(flag == 0){
-   //入力動作
-   int ans = getNum(1, 49);
-
-   //比較動作
-   diffNum(ans, hyou);
   
-   
+   while(1) {
+     /*行列の定義*/
+     int row, column;
+
+     /*入力動作*/
+     int ans = getNum(1, 49);
     
+     /*比較動作*/
+     for (i = 0; i < 7; i++) {
+       for (j = 0; j < 7; j++) {
+         //入力されたansの行と列を取得
+         if (hyou[0][i][j] == ans) {
+           
+           row = i;
+           column = j;
+           puts("ansの行と列を取得しました");
+         
+         }
+       }
+     }
+   
+     //数値チェック
+     if (row == l && column == m) {
+       puts("正解!");
+       break;
+     } else if ( row == l || column == m) {
+       puts("惜しい！");
+     
+     } else {
+       puts("不正解！");
+     }
+
+  } 
+   
    return 0;
 
 }
