@@ -25,8 +25,10 @@ int getAnsNum(int yokobou[], int maru) {
 }
 
 int main(void) {
+   //縦棒の数
    int COLUMN = 5;
    int user;
+
    //〇×の配列、横棒の位置を格納する配列
    char result[COLUMN+1];
    int yokobou[ROW];
@@ -43,14 +45,11 @@ int main(void) {
    //printf("maru:%d\n", maru);
    
    
-   /*数字を表示*/
-   for( i = 0; i <= COLUMN; i++ ) printf("%d   ", i);
-      putchar('\n');
  
    
    /*横棒作成*/
    for( i = 0; i < ROW; i++) {
-     //横棒がある列を格納
+     //横棒がある列を数字で格納
      yokobou[i] = rand() % COLUMN ;
    }
 
@@ -60,14 +59,20 @@ int main(void) {
   
    while(1){
 
+   /*数字を表示*/
+   for( i = 0; i <= COLUMN; i++ ) printf("%d   ", i);
+      putchar('\n');
+   
    /*表示処理*/
    for( i = 0; i < ROW; i++) {
       for( j = 0; j < COLUMN; j++) {
          printf("|");
          if(j == yokobou[i]) {
-           printf("---", yokobou[i]);
+           printf("---");
+         
          } else {
            printf("   ");
+         
          }
          
       }
