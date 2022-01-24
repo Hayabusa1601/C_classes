@@ -15,6 +15,10 @@ int main(void) {
   printf("直線の幅:"); scanf("%d",&L);
   printf("針の長さ:"); scanf("%d",&a);  
 
+  if(L < a) {
+    puts("直線の幅 >= 針の長さでなければなりません。");
+    return 0;
+  }
 
   
   for(i = 0; i < 100000; i++) {
@@ -38,7 +42,7 @@ int main(void) {
 
   }
 
-  printf("回数:%d", count);
+  printf("交わった回数:%d", count);
   putchar('\n');
   double ansper = (2*a) / (L*PI);
   printf("理想的な確率:%lf\n", ansper);
