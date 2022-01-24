@@ -33,6 +33,7 @@ void do_child() {
   close(pipe_fd[1]);
   while((i=read(pipe_fd[0], &c, 1)) > 0) {
     putchar(c);
+    putchar('a');
   }
 
   putchar('\n');
