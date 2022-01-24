@@ -77,7 +77,8 @@ int getNum(int i, int j) {
     if(i < x && x < j) {
       break;
     } else {
-      printf("値が不正です。再入力:");
+      printf("値が不正です。");
+      break;
     }
   }
     return x;
