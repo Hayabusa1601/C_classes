@@ -104,15 +104,31 @@ int main(void) {
    m = rand() % 7;
    hyou[1][l][m] = 1;
    //デバッグ
-   printf("デバッグ答え：%d\n", hyou[0][l][m]);
+   //printf("デバッグ答え：%d\n", hyou[0][l][m]);
 
   
    while(1) {
      /*行列の定義*/
      int row, column;
 
+     /*表の表示*/
+     for(i = 0; i < 7; i++) {
+       for(j = 0; j < 7; j++) {
+         tmp = hyou[0][i][j];
+
+        //一桁のときだけ空白を挿入
+        if(tmp < 10) {
+         printf("%d  ", tmp);
+        } else {
+          printf("%d ", tmp);
+        }
+      }
+      putchar('\n');
+     }
+
+
      /*入力動作*/
-     int ans = getNum(1, 49);
+     int ans = getNum(0, 50);
 
      /*比較動作*/
      int flag = diffNum(ans, hyou, l, m);
